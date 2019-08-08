@@ -7,11 +7,15 @@ export default function Login({ history }) {
     const [username, setUsername] = useState("");
 
     async function handleSubmit(e) {
-        e.preventDefaut();
+        e.preventDefault();
 
-        const response = await api.post("/devs", { username });
-        console.log(response);
-        history.push("/main");
+        const response = await api.post("/devs", { username, });
+
+        const { _id } = response.data
+
+
+
+        history.push(`/dev/${_id}`);
     }
 
     return (
@@ -23,7 +27,7 @@ export default function Login({ history }) {
                     value={username}
                     onChange={e => setUsername(e.target.value)}
                 />
-                <button type="submit" value="Enviar">Enviar</button>
+                <button type="submit">Enviar</button>
 
             </form>
         </div>
